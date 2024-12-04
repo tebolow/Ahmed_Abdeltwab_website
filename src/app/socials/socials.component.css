@@ -1,0 +1,13 @@
+.socialMedia .icon {
+    cursor: pointer;
+}
+
+.socialMedia .icon :hover {
+    background-color: var(--selected);
+    border-radius: 10px;
+}
+
+.socialMedia {
+    display: flex;
+    gap: 10px;
+}

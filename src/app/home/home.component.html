@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="homeLeftText">
+        <h1>
+            @if (data) {
+                {{data.data.name}}
+            }
+            @else {
+                Hi, I'm Ahmed Abdeltwab 👋
+            }
+        </h1>
+        <p>
+            @if (data) {
+                {{data.data.description}}
+            }
+            @else {
+                This is brief description placeholder till I write one.
+            }
+        </p>
+        <div class="iconWithTextContainer">
+            <div class="iconWithText">
+                <div class="icon">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke="#D1D4DA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#D1D4DA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                </div>
+                <p>
+                    @if (data) {
+                        {{data.data.location}}
+                    }
+                    @else {
+                        Cairo, Egypt
+                    }
+                </p>
+            </div>
+            <div class="iconWithText">
+                <div class="icon">
+                    <svg fill="#10B981" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m0 12c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12c-6.624-.008-11.992-5.376-12-11.999zm2.4 0c0 5.302 4.298 9.6 9.6 9.6s9.6-4.298 9.6-9.6-4.298-9.6-9.6-9.6c-5.299.006-9.594 4.301-9.6 9.599v.001zm4 0c0-3.093 2.507-5.6 5.6-5.6s5.6 2.507 5.6 5.6-2.507 5.6-5.6 5.6c-3.093 0-5.6-2.507-5.6-5.6z"></path></g></svg>
+                </div>
+                <p>
+                    @if (data) {
+                        {{data.data.availability}}
+                    }
+                    @else {
+                        Available for new projects.
+                    }
+                </p>
+            </div>
+        </div>
+        <app-socials></app-socials>
+    </div>
+    <div class="homeRightImg">
+        <div class="lay">
+            <div class="img">
+                <img [src]="staticURL + data.data.homeImage" alt="Ahmed ABdeltwab's image" width="100%" height="100%">
+            </div>
+        </div>
+    </div>
+</div>

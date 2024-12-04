@@ -1,0 +1,17 @@
+<div class="container">
+    <form action="POST" class="contactForm" (submit)="addContact($event)">
+        <div class="field">
+            <input type="text" placeholder="Name" name="name" class="fieldWidth">
+        </div>
+        <div class="field">
+            <input type="text" placeholder="Email" name="email" class="fieldWidth">
+        </div>
+        <div class="field">
+            <input type="text" placeholder="Phone number" name="phone" class="fieldWidth">
+        </div>
+        <div class="field">
+            <textarea name="message" placeholder="Message"  class="fieldWidth" id="textarea"></textarea>
+        </div>
+        <input type="submit" value="Send" class="submitButton">
+    </form>
+</div>

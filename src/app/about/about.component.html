@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="aboutMe">
+        About me
+    </div>
+    <div class="body">
+        <div class="aboutLeftImage">
+            <div class="lay">
+                <div class="img">
+                    <img [src]="staticURL + data.data.aboutImage" alt="Ahmed ABdeltwab's image" width="100%" height="100%">
+                </div>
+            </div>
+        </div>
+        <div class="aboutRightText">
+            <h1>
+                Curious about me? Here you have it:
+            </h1>
+            <p class="preserve">
+                @if (data) {
+                    {{data.data.about}}
+                }
+                @else {
+                    This Ahmed Abdeltwab's about till I write it.
+                }
+            </p>
+            <!-- <div class="bulletPoints">
+                <ul>
+                    <li>B.E. in Computer Engineering</li>
+                    <li>Avid learner</li>
+                    <li>Full time freelancer</li>
+                    <li>Aspiring indie hacker</li>
+                </ul>
+            </div> -->
+            <!-- <p>
+                One last thing, I'm available for freelance work, so feel free to reach out and say hello! I promise I don't bite 😉
+            </p> -->
+        </div>
+    </div>
+</div>
