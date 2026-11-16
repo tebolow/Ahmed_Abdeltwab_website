@@ -1,38 +1,73 @@
-<div class="container">
-    <div class="aboutMe">
-        About me
-    </div>
-    <div class="body">
-        <div class="aboutLeftImage">
+<main class="container">
+  @if (data?.data) {
+    <div class="mainContainer">
+      <div class="aboutMe">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        <span>About me</span>
+      </div>
+
+      <div class="body">
+        @if (data.data.aboutImage) {
+          <div class="aboutLeftImage">
             <div class="lay">
-                <div class="img">
-                    <img [src]="staticURL + data.data.aboutImage" alt="Ahmed ABdeltwab's image" width="100%" height="100%">
-                </div>
+              <div class="img">
+                <img [src]="staticURL + data.data.aboutImage" [alt]="data.data.name + ' about photo'" />
+              </div>
             </div>
-        </div>
+          </div>
+        }
+
         <div class="aboutRightText">
-            <h1>
-                Curious about me? Here you have it:
-            </h1>
-            <p class="preserve">
-                @if (data) {
-                    {{data.data.about}}
+          <h1>Curious about me? Here you have it:</h1>
+
+          <div class="paragraphs">
+            @for (paragraph of aboutParagraphs; track $index) {
+              <p [class.lead-paragraph]="$index === 0">{{ paragraph }}</p>
+            }
+          </div>
+
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <div>
+                <h3>Frontend Craft</h3>
+                <p>Responsive, accessible UIs with modern web standards.</p>
+              </div>
+            </div>
+
+            <div class="highlight-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="8" rx="2"></rect>
+                <rect x="2" y="13" width="20" height="8" rx="2"></rect>
+              </svg>
+              <div>
+                <h3>Backend &amp; APIs</h3>
+                <p>Secure REST APIs, authentication &amp; database models.</p>
+              </div>
+            </div>
+          </div>
+
+          @if (toolkit.length > 0) {
+            <section class="stack-section" aria-labelledby="stack-heading">
+              <h2 id="stack-heading">Core Full-Stack Toolkit</h2>
+              <div class="stack-boxes">
+                @for (tech of toolkit; track tech) {
+                  <span class="stack-chip">
+                    <app-tech-icon [name]="tech" />
+                    <span>{{ tech }}</span>
+                  </span>
                 }
-                @else {
-                    This Ahmed Abdeltwab's about till I write it.
-                }
-            </p>
-            <!-- <div class="bulletPoints">
-                <ul>
-                    <li>B.E. in Computer Engineering</li>
-                    <li>Avid learner</li>
-                    <li>Full time freelancer</li>
-                    <li>Aspiring indie hacker</li>
-                </ul>
-            </div> -->
-            <!-- <p>
-                One last thing, I'm available for freelance work, so feel free to reach out and say hello! I promise I don't bite 😉
-            </p> -->
+              </div>
+            </section>
+          }
         </div>
+      </div>
     </div>
-</div>
+  }
+</main>

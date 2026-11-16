@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
+import { DataService } from '../services/data/data.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,14 +10,41 @@ import { Router } from '@angular/router';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
-export class ContactComponent {
-  http = inject(HttpClient);
-  constructor (private router: Router){};
+export class ContactComponent implements OnInit {
+  private http = inject(HttpClient);
+  private dataService = inject(DataService);
 
-  addContact(e: any){
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    this.http.post(`${environment.apiUrl}/contacts/addContact`, formData).subscribe((res)=>console.log(res), (err)=>console.log(err))
-    this.router.navigate(["/"])
+  siteData: any = null;
+  isSubmitting = false;
+  statusMessage = '';
+  isError = false;
+
+  ngOnInit(): void {
+    this.dataService.currentData.subscribe((res) => {
+      this.siteData = res?.data || null;
+    });
+  }
+
+  addContact(event: Event): void {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    this.isSubmitting = true;
+    this.statusMessage = '';
+    this.isError = false;
+
+    this.http.post(`${environment.apiUrl}/contacts/addContact`, formData).subscribe({
+      next: () => {
+        this.isSubmitting = false;
+        this.statusMessage = 'Thank you! Your message has been sent.';
+        form.reset();
+      },
+      error: (err) => {
+        this.isSubmitting = false;
+        this.isError = true;
+        this.statusMessage = err?.error?.error || 'Failed to send message. Please try again.';
+      }
+    });
   }
 }

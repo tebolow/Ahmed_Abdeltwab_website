@@ -1,20 +1,111 @@
-<div class="container">
-    <h1>
-        Wingie
-    </h1>
-    <p>
-        This is a brief description about the project.
-    </p>
-    <div class="mainImg">
-        <img [src]="mainImg" width="100%" height="100%">
-    </div>
-    <div class="imgs">
-        <img src="./light_mode.png" width="100%" height="100%" (click)="changeImg($event)">
-        <img src="./dark_mode.png" width="100%" height="100%" (click)="changeImg($event)">
-    </div>
+<main class="container">
+  @if (isLoading) {
+    <p class="status-text">Loading project...</p>
+  } @else if (errorMessage || !project) {
+    <p class="status-text">{{ errorMessage || 'Project not found.' }}</p>
+    <button type="button" class="btn-secondary" (click)="goBack()">← Back to Portfolio</button>
+  } @else {
+    <article class="project-detail">
+      <div class="top-bar">
+        <button type="button" class="btn-secondary" (click)="goBack()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>Back to Portfolio</span>
+        </button>
 
-    <p>
-        This is a detailer description about the project.
-    </p>
-    <video src="./where_in_the_world.mkv" controls width="100%" height="100%"></video>
-</div>
+        <span class="category-badge">{{ project.category }}</span>
+      </div>
+
+      <header class="project-header">
+        <h1>{{ project.name }}</h1>
+        <p class="brief">{{ project.brief }}</p>
+      </header>
+
+      @if (mainImg) {
+        <section class="gallery-card" aria-label="Project media gallery">
+          <div class="mainImg">
+            <img [src]="staticURL + mainImg" [alt]="project.name + ' screenshot ' + (currentIndex + 1)" />
+
+            @if (galleryImages.length > 1) {
+              <button type="button" class="nav-arrow prev" (click)="prevImage()" aria-label="Previous image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button type="button" class="nav-arrow next" (click)="nextImage()" aria-label="Next image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <span class="img-counter">{{ currentIndex + 1 }} / {{ galleryImages.length }}</span>
+            }
+          </div>
+
+          @if (galleryImages.length > 1) {
+            <div class="imgs">
+              @for (img of galleryImages; track img; let i = $index) {
+                <button
+                  type="button"
+                  class="thumb-btn"
+                  [class.selected]="currentIndex === i"
+                  (click)="selectImage(i)"
+                  [attr.aria-label]="'View image ' + (i + 1)"
+                >
+                  <img [src]="staticURL + img" [alt]="project.name + ' thumbnail ' + (i + 1)" />
+                </button>
+              }
+            </div>
+          }
+        </section>
+      }
+
+      <div class="content-grid">
+        <section class="content-card description-section">
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" x2="8" y1="13" y2="13" />
+              <line x1="16" x2="8" y1="17" y2="17" />
+            </svg>
+            <span>About This Project</span>
+          </h2>
+          <p class="preserve">{{ project.description }}</p>
+        </section>
+
+        @if (project.skills?.length) {
+          <aside class="content-card skills-card">
+            <h2>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+              <span>Tech Stack</span>
+            </h2>
+            <div class="skills">
+              @for (skill of project.skills; track $index) {
+                <span class="skill-chip">
+                  <app-tech-icon [name]="skill" />
+                  <span>{{ skill }}</span>
+                </span>
+              }
+            </div>
+          </aside>
+        }
+      </div>
+
+      @if (project.video) {
+        <section class="content-card video-section">
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            <span>Demo Video</span>
+          </h2>
+          <video [src]="staticURL + project.video" controls preload="metadata"></video>
+        </section>
+      }
+    </article>
+  }
+</main>

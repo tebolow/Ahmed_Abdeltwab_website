@@ -9,13 +9,22 @@ import { SocialsComponent } from '../socials/socials.component';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
-export class FooterComponent implements OnInit{
-  dataService = inject(DataService);
-  data: any;
-  
+export class FooterComponent implements OnInit {
+  private dataService = inject(DataService);
+  data: any = null;
+  copiedField: 'email' | 'phone' | null = null;
+
   ngOnInit(): void {
-    this.dataService.currentData.subscribe((data) => {
-      this.data = data;
-    })
+    this.dataService.currentData.subscribe((res) => {
+      this.data = res;
+    });
+  }
+
+  copyText(text: string | undefined, field: 'email' | 'phone'): void {
+    if (!text) return;
+    navigator.clipboard?.writeText(text).then(() => {
+      this.copiedField = field;
+      setTimeout(() => (this.copiedField = null), 2000);
+    });
   }
 }

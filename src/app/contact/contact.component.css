@@ -1,54 +1,170 @@
 .container {
-    width: 100%;
-    height: 100%;
-    padding: 10%;
-    background-color: var(--navy);
-    text-align: center;
+  background-color: var(--bg-secondary);
+  min-height: calc(100dvh - 76px);
+  padding: clamp(6.5rem, 9vw, 8.5rem) clamp(1rem, 4vw, 3rem) 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form-card {
+  width: min(100%, 680px);
+  max-width: 100%;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  box-shadow: 0 14px 36px -18px rgba(0, 0, 0, 0.35);
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.form-card h1 {
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+}
+
+.quick-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.info-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.info-pill svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.status-banner {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.status-banner.success {
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  border: 1px solid var(--success);
+}
+
+.status-banner.error {
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  border: 1px solid var(--danger);
 }
 
 .contactForm {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
-.fieldWidth {
-    padding: 24px;
-    height: 20px;
-    border-radius: 48px;
-    width: 500px;
-    border: #DBDFD0 solid 2px;
+.field {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  font-size: max(1rem, 1em);
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  width: 100%;
+  min-width: min(100%, 240px);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.field input {
+  min-height: 48px;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.field input:user-invalid,
+.field textarea:user-invalid {
+  border-color: var(--danger);
 }
 
 .submitButton {
-    padding: 0.7rem 1.4rem;
-    border-radius: 2rem;
-    border: 0px;
-    background-color: var(--light-navy);
-    color: white;
-    height: 64px;
-    width: 400px;
-    font-weight: bold;
-    font-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: min(100%, 210px);
+  min-height: 48px;
+  padding: 0.75rem 1.85rem;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--success);
+  color: #FFFFFF;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 0.35rem;
+  transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
-.submitButton:hover{
-    cursor: pointer;
-    background-color: var(--selected);
+.submitButton:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-2px);
 }
 
-#textarea {
-    min-width: 500px;
-    max-width: 1000px;
-    min-height: 70px;
-    max-height: 300px;
-}
-
-input::placeholder {
-    font-size: larger;
-}
-
-#textarea::placeholder {
-    font-size: larger;
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

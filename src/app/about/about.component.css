@@ -1,61 +1,187 @@
 .container {
-    background-color: var(--navy);
-    width: 100%;
-    padding: 10%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 100px;
+  background-color: var(--bg-secondary);
+  width: 100%;
+  min-height: calc(100dvh - 76px);
+  padding: clamp(6.5rem, 10vw, 8.5rem) clamp(1.25rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem);
+}
+
+.mainContainer {
+  max-width: 1200px;
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
 }
 
 .aboutMe {
-    background-color: var(--light-navy);
-    padding: 10px;
-    border-radius: 15px;
-    border: none;
-    color: var(--grey-text);
-}
-
-p {
-    color: var(--grey-text);
-}
-
-h1 {
-    color: white;
-    font-size: 72px;
-}
-
-li {
-    color: var(--grey-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--accent);
+  padding: 0.4rem 1.25rem;
+  min-width: 130px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .body {
-    display: flex;
-    gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }
 
-.aboutLeftImage{
-    width: 50%;
-}
-
-.aboutRightText {
-    width: 50%;
-}
-
-.img {
-    position: absolute;
-    width: 250px;
-    height: auto;
-    z-index: 1;
-    top: -20px;
-    left: 20px;
-    border: 5px solid black;
+.aboutLeftImage {
+  display: flex;
+  justify-content: center;
 }
 
 .lay {
-    position: relative;
-    background-color: var(--light-navy);
-    width: 250px;
-    aspect-ratio: 2 / 3.5
+  position: relative;
+  display: inline-block;
+  max-width: min(320px, 80vw);
+  margin-block-end: 14px;
+  margin-inline-start: 14px;
+}
+
+.lay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-elevated);
+  transform: translate(-14px, 14px);
+  z-index: 0;
+}
+
+.img {
+  position: relative;
+  z-index: 1;
+  border: 5px solid var(--bg-secondary);
+  overflow: hidden;
+}
+
+.img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aboutRightText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.aboutRightText h1 {
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 65ch;
+}
+
+.paragraphs p {
+  color: var(--text-secondary);
+  font-size: 1.03rem;
+  line-height: 1.75;
+}
+
+.paragraphs p.lead-paragraph {
+  color: var(--text-primary);
+  font-size: 1.08rem;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--accent);
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.highlight-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.highlight-card svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.highlight-card h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.highlight-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.stack-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.stack-section h2 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.stack-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.stack-chip {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  min-width: 102px;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@media (min-width: 900px) {
+  .body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
