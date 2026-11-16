@@ -35,7 +35,7 @@
         <div class="homeRightImg">
           <div class="lay">
             <div class="img">
-              <img [src]="staticURL + data.data.homeImage" [alt]="data.data.name + ' photo'" />
+              <img [src]="data.data.homeImage | mediaUrl" [alt]="data.data.name + ' photo'" />
             </div>
           </div>
         </div>

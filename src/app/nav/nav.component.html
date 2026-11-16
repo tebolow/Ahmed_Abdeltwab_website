@@ -2,7 +2,7 @@
   <div class="header-inner">
     <a class="logo" routerLink="/home" (click)="closeMenu()" aria-label="Portfolio Home">
       @if (data?.data?.logo) {
-        <img [src]="staticURL + data.data.logo" [alt]="(data.data.name || 'Portfolio') + ' logo'" />
+        <img [src]="data.data.logo | mediaUrl" [alt]="(data.data.name || 'Portfolio') + ' logo'" />
       } @else {
         <span class="logo-text">Portfolio</span>
       }

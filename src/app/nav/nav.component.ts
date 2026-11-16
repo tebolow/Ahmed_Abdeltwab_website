@@ -3,11 +3,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { DataService } from '../services/data/data.service';
 import { ThemeService } from '../services/theme/theme.service';
+import { MediaUrlPipe } from '../shared/pipes/media-url.pipe';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, MediaUrlPipe],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })

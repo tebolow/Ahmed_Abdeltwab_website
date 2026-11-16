@@ -25,7 +25,7 @@
       @if (mainImg) {
         <section class="gallery-card" aria-label="Project media gallery">
           <div class="mainImg">
-            <img [src]="staticURL + mainImg" [alt]="project.name + ' screenshot ' + (currentIndex + 1)" />
+            <img [src]="mainImg | mediaUrl" [alt]="project.name + ' screenshot ' + (currentIndex + 1)" />
 
             @if (galleryImages.length > 1) {
               <button type="button" class="nav-arrow prev" (click)="prevImage()" aria-label="Previous image">
@@ -52,7 +52,7 @@
                   (click)="selectImage(i)"
                   [attr.aria-label]="'View image ' + (i + 1)"
                 >
-                  <img [src]="staticURL + img" [alt]="project.name + ' thumbnail ' + (i + 1)" />
+                  <img [src]="img | mediaUrl" [alt]="project.name + ' thumbnail ' + (i + 1)" />
                 </button>
               }
             </div>
@@ -103,7 +103,7 @@
             </svg>
             <span>Demo Video</span>
           </h2>
-          <video [src]="staticURL + project.video" controls preload="metadata"></video>
+          <video [src]="project.video | mediaUrl" controls preload="metadata"></video>
         </section>
       }
     </article>

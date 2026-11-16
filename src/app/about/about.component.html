@@ -14,7 +14,7 @@
           <div class="aboutLeftImage">
             <div class="lay">
               <div class="img">
-                <img [src]="staticURL + data.data.aboutImage" [alt]="data.data.name + ' about photo'" />
+                <img [src]="data.data.aboutImage | mediaUrl" [alt]="data.data.name + ' about photo'" />
               </div>
             </div>
           </div>

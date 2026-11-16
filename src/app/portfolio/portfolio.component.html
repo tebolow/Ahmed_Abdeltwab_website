@@ -35,7 +35,7 @@
       @for (project of filteredProjects; track project._id) {
         <article class="project" (click)="goToSingleProject(project._id)">
           <div class="img">
-            <img [src]="staticURL + project.thumb" [alt]="project.name + ' thumbnail'" loading="lazy" />
+            <img [src]="project.thumb | mediaUrl" [alt]="project.name + ' thumbnail'" loading="lazy" />
             <div class="img-overlay">
               <span class="category-badge">{{ project.category }}</span>
               @if (project.video) {

@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { DataService } from '../services/data/data.service';
 import { SocialsComponent } from '../socials/socials.component';
+import { MediaUrlPipe } from '../shared/pipes/media-url.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SocialsComponent, RouterLink],
+  imports: [SocialsComponent, RouterLink, MediaUrlPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

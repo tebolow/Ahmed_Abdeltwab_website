@@ -2,11 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { DataService } from '../services/data/data.service';
 import { environment } from '../../environments/environment';
 import { TechIconComponent } from '../shared/tech-icon/tech-icon.component';
+import { MediaUrlPipe } from '../shared/pipes/media-url.pipe';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [TechIconComponent],
+  imports: [TechIconComponent, MediaUrlPipe],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
